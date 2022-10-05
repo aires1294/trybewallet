@@ -26,10 +26,11 @@ class Login extends Component {
   };
 
   handleBtn = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // tira o comportamento de recarregar a pagina IMPORTANTE
     const { history, dispatch } = this.props;
     const { email } = this.state;
     dispatch(getLogin(email));
+    // dispatch(fetchApi());
     history.push('/carteira');
   };
 

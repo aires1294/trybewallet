@@ -8,6 +8,7 @@ const user = (state = INICIAL_STATE, action) => {
   switch (action.type) {
   case GET_LOGIN: {
     return {
+      ...state,
       email: action.payload,
     };
   }
