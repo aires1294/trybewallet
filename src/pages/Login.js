@@ -30,7 +30,6 @@ class Login extends Component {
     const { history, dispatch } = this.props;
     const { email } = this.state;
     dispatch(getLogin(email));
-    // dispatch(fetchApi());
     history.push('/carteira');
   };
 
@@ -38,6 +37,7 @@ class Login extends Component {
     const { isDisabled } = this.state;
     return (
       <form>
+        Email
         <input
           data-testid="email-input"
           type="text"
@@ -45,7 +45,7 @@ class Login extends Component {
           // value="email"
           onChange={ this.handleInput }
         />
-        Email
+        Senha
         <input
           data-testid="password-input"
           type="password"
@@ -53,7 +53,6 @@ class Login extends Component {
           // value="password"
           onChange={ this.handleInput }
         />
-        Senha
         <button
           type="submit"
           disabled={ isDisabled }
