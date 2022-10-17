@@ -54,6 +54,7 @@ class Login extends Component {
           onChange={ this.handleInput }
         />
         <button
+          data-testid="buttonId-input"
           type="submit"
           disabled={ isDisabled }
           onClick={ this.handleBtn }
