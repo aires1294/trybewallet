@@ -13,13 +13,18 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     const button = screen.getByRole('button', { name: /entrar/i });
     const emailTest = 'abc@gmail.com';
     const password2 = '123456';
-    userEvent.type(emailTest, email);
-    userEvent.type(password, password2);
-    userEvent.click(button);
+
     expect(title).toBeInTheDocument();
     expect(password).toBeInTheDocument();
     expect(email).toBeInTheDocument();
     expect(button).toBeDisabled();
+    expect(button).toBeInTheDocument();
+    expect(button.innerHTML).toBe('Entrar');
+
+    userEvent.type(emailTest, email);
+    userEvent.type(password, password2);
+    userEvent.click(button);
+
     const { pathname } = history.location;
     expect(pathname).toBe('/carteira');
   });
@@ -41,6 +46,7 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     expect(method).toBeInTheDocument();
     expect(description).toBeInTheDocument();
     expect(button).toBeInTheDocument();
+    expect(button).toBeDisabled();
     expect(zeroValue).toBeInTheDocument();
     expect(zeroValue).toHaveTextContent('0.00');
   });
