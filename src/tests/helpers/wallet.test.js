@@ -6,7 +6,7 @@ import { renderWithRouterAndRedux } from './renderWith';
 
 describe('Desenvolva testes para atingir 60% de cobertura total da aplicação', () => {
   it('Componente Login', async () => {
-    const { history } = renderWithRouterAndRedux(<App />);
+    renderWithRouterAndRedux(<App />);
     // const title = screen.getByRole('heading', { name: /login/i });
     const email = screen.getByTestId('email-input');
     const password = screen.getByTestId('password-input');
