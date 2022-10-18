@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { deleteExpense } from '../redux/actions';
+import { deleteExpense } from '../redux/actions';
 
 class Table extends Component {
   tax = (ask) => {
@@ -16,11 +16,12 @@ class Table extends Component {
     return real;
   };
 
-  // handleClick = (id) => {
-  //   const { dispatch, expenses } = this.props;
-  //   const expenseDelete = expenses.filter((element) => element.id !== id);
-  //   dispatch(deleteExpense(expenseDelete));
-  // };
+  handleClick = (id) => {
+    const { dispatch, expenses } = this.props;
+    console.log(expenses, 'linha 21');
+    const expenseDelete = expenses.filter((element) => element.id !== id);
+    dispatch(deleteExpense(expenseDelete));
+  };
 
   render() {
     const { expenses } = this.props;
@@ -59,7 +60,7 @@ class Table extends Component {
                 <button
                   data-testid="delete-btn"
                   type="button"
-                  // onClick={ this.handleClick(element.id) }
+                  onClick={ () => this.handleClick(element.id) }
                 >
                   BOTAO
                 </button>
