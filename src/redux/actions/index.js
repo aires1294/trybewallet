@@ -4,6 +4,8 @@ export const GET_API = 'GET_API';
 export const FAILED_API = 'FAILED_API';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const EDITED_EXPENSE = 'EDITED_EXPENSE';
 
 export const getLogin = (payload) => ({ type: GET_LOGIN, payload });
 export const inicialRequest = () => ({ type: INICIAL_REQ });
@@ -13,6 +15,8 @@ export const responseApi = (payload) => ({ type: GET_API, payload });
 export const failedApi = (payload) => ({ type: FAILED_API, payload });
 export const addExpense = (payload) => ({ type: ADD_EXPENSE, payload });
 export const deleteExpense = (payload) => ({ type: DELETE_EXPENSE, payload });
+export const editExpense = (payload) => ({ type: EDIT_EXPENSE, payload });
+export const editedExpense = (payload) => ({ type: EDITED_EXPENSE, payload });
 
 export function requestApi(parametro) {
   return async (dispatch) => {

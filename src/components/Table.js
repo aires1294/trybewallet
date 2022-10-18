@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
   tax = (ask) => {
@@ -18,9 +18,14 @@ class Table extends Component {
 
   handleClick = (id) => {
     const { dispatch, expenses } = this.props;
-    console.log(expenses, 'linha 21');
+    // console.log(expenses, 'linha 21');
     const expenseDelete = expenses.filter((element) => element.id !== id);
     dispatch(deleteExpense(expenseDelete));
+  };
+
+  fieldEdit = (id) => {
+    const { dispatch } = this.props;
+    dispatch(editExpense(id));
   };
 
   render() {
@@ -58,11 +63,18 @@ class Table extends Component {
               <td>Real</td>
               <td>
                 <button
+                  data-testid="edit-btn"
+                  type="button"
+                  onClick={ () => this.fieldEdit(element.id) }
+                >
+                  Editar despesa
+                </button>
+                <button
                   data-testid="delete-btn"
                   type="button"
                   onClick={ () => this.handleClick(element.id) }
                 >
-                  BOTAO
+                  Excluir
                 </button>
               </td>
             </tr>
