@@ -28,12 +28,10 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     expect(button).toBeEnabled();
     userEvent.click(button);
 
-    // const { location: { pathname } } = history;
     const valueInput = await screen.findByTestId('value-input');
     console.log(valueInput);
+    // PARA IR PARA O SAPINHO
     screen.logTestingPlaygroundURL();
-    // const path = history.location.pathname;
-    // expect(path).toBe('/carteira');
   });
   it('Compomente carteira', async () => {
     const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
@@ -56,5 +54,67 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     // expect(button).toBeDisabled();
     expect(zeroValue).toBeInTheDocument();
     expect(zeroValue).toHaveTextContent('0.00');
+  });
+
+  // it('Compomente carteira - testando TABLE', async () => {
+  //   const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
+
+  //   const descriptionTable = screen.getByRole('columnheader', {
+  //     name: /descrição/i,
+  //   });
+  //   const tagTable = screen.getByRole('columnheader', {
+  //     name: /tag/i,
+  //   });
+  //   const methodTable = screen.getByRole('columnheader', {
+  //     name: /método de pagamento/i,
+  //   });
+  //   const currencyTable = screen.getByRole('columnheader', {
+  //     name: /câmbio utilizado/i,
+  //   });
+  //   const buttonTable = screen.getByRole('columnheader', {
+  //     name: /editar\/excluir/i,
+  //   });
+
+  //   expect(history.location.pathname).toBe('/carteira');
+  //   expect(descriptionTable).toBeInTheDocument();
+  //   expect(tagTable).toBeInTheDocument();
+  //   expect(methodTable).toBeInTheDocument();
+  //   expect(currencyTable).toBeInTheDocument();
+  //   expect(buttonTable).toBeInTheDocument();
+  // });
+
+  it('Botao Adicionar compras', () => {
+    const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
+    const { location: { pathname } } = history;
+    const buttonAdd = screen.getByRole('button', { name: /adicionar despesa/i });
+
+    expect(buttonAdd).toBeInTheDocument();
+    expect(pathname).toBe('/carteira');
+  });
+
+  it('adc compras', async () => {
+    const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
+    const { location: { pathname } } = history;
+    const buttonAdd = screen.getByRole('button', {
+      name: /adicionar despesa/i,
+    });
+    const valueAdd = screen.getByTestId('value-input');
+    const descriptionTable = screen.getByRole('columnheader', {
+      name: /descrição/i,
+    });
+    expect(buttonAdd).toBeInTheDocument();
+    expect(pathname).toBe('/carteira');
+    userEvent.type(valueAdd, '5');
+    userEvent.click(buttonAdd);
+    userEvent.type(descriptionTable, 'salgado');
+
+    // const btnExclude = await getByRole('button', { name: /excluir/i });
+    const typeBuy = await screen.findByRole('cell', {
+      name: /alimentação/i,
+    });
+    const btnExcluir = await screen.findByTestId('delete-btn');
+    expect(btnExcluir).toBeInTheDocument();
+    expect(typeBuy).toBeInTheDocument();
+    userEvent.click(btnExcluir);
   });
 });
