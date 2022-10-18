@@ -1,4 +1,4 @@
-import { INICIAL_REQ, GET_API, ADD_EXPENSE } from '../actions';
+import { INICIAL_REQ, GET_API, ADD_EXPENSE, DELETE_EXPENSE } from '../actions';
 
 const INICIAL_STATE = {
   currencies: [], // array de string
@@ -24,6 +24,17 @@ function wallet(state = INICIAL_STATE, action) {
     return {
       ...state,
       expenses: [...state.expenses, action.payload],
+    };
+  // case EDIT_TABLE:
+  //   return {
+  //     ...state,
+  //     editor: true,
+  //     idToEdit: action.payload,
+  //   };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: action.expenses,
     };
   default:
     return state;
