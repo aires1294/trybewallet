@@ -28,14 +28,13 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     expect(button).toBeEnabled();
     userEvent.click(button);
 
-    const valueInput = await screen.findByTestId('value-input');
-    console.log(valueInput);
+    // const valueInput = await screen.findByTestId('value-input');
+    // console.log(valueInput);
     // PARA IR PARA O SAPINHO
     screen.logTestingPlaygroundURL();
   });
   it('Compomente carteira', async () => {
     const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
-    // const { location: { pathname } } = history;
     const currency = await screen.findAllByTestId('currency-input');
     const value = screen.getByTestId('value-input');
     const tag = screen.getByTestId('tag-input');
@@ -55,33 +54,6 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     expect(zeroValue).toBeInTheDocument();
     expect(zeroValue).toHaveTextContent('0.00');
   });
-
-  // it('Compomente carteira - testando TABLE', async () => {
-  //   const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
-
-  //   const descriptionTable = screen.getByRole('columnheader', {
-  //     name: /descrição/i,
-  //   });
-  //   const tagTable = screen.getByRole('columnheader', {
-  //     name: /tag/i,
-  //   });
-  //   const methodTable = screen.getByRole('columnheader', {
-  //     name: /método de pagamento/i,
-  //   });
-  //   const currencyTable = screen.getByRole('columnheader', {
-  //     name: /câmbio utilizado/i,
-  //   });
-  //   const buttonTable = screen.getByRole('columnheader', {
-  //     name: /editar\/excluir/i,
-  //   });
-
-  //   expect(history.location.pathname).toBe('/carteira');
-  //   expect(descriptionTable).toBeInTheDocument();
-  //   expect(tagTable).toBeInTheDocument();
-  //   expect(methodTable).toBeInTheDocument();
-  //   expect(currencyTable).toBeInTheDocument();
-  //   expect(buttonTable).toBeInTheDocument();
-  // });
 
   it('Botao Adicionar compras', () => {
     const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
@@ -108,13 +80,12 @@ describe('Desenvolva testes para atingir 60% de cobertura total da aplicação',
     userEvent.click(buttonAdd);
     userEvent.type(descriptionTable, 'salgado');
 
-    // const btnExclude = await getByRole('button', { name: /excluir/i });
-    const typeBuy = await screen.findByRole('cell', {
-      name: /alimentação/i,
-    });
+    // const typeBuy = await screen.findByRole('cell', {
+    //   name: /alimentação/i,
+    // });
     const btnExcluir = await screen.findByTestId('delete-btn');
     expect(btnExcluir).toBeInTheDocument();
-    expect(typeBuy).toBeInTheDocument();
+    // expect(typeBuy).toBeInTheDocument();
     userEvent.click(btnExcluir);
   });
 });
