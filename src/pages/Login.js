@@ -13,6 +13,7 @@ class Login extends Component {
   handleInput = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value }, () => this.verifyBtn());
+    // event.target.email
   };
 
   verifyBtn = () => {
